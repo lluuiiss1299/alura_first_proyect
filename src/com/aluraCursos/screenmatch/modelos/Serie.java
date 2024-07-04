@@ -5,6 +5,10 @@ public class Serie extends Titulo{
     int episodiosPorTemporadas;
     int minutosPorEpisodio;
 
+    public Serie(String nombre, int fechaDeLanzamineto) {
+        super(nombre, fechaDeLanzamineto);
+    }
+
 
     @Override
     public int getDuracionEnMinutos() {
@@ -33,5 +37,10 @@ public class Serie extends Titulo{
 
     public void setTemporadas(int temporadas) {
         this.temporadas = temporadas;
+    }
+
+    @Override
+    public String toString() {
+        return "\nSerie " + this.getNombre() + "\nFecha de lanzamiento: "+ getFechaDeLanzamineto();
     }
 }

@@ -1,5 +1,8 @@
 package com.aluraCursos.screenmatch.modelos;
 
+import com.aluraCursos.screenmatch.exceptions.ErrorFechaLanzamientoUndefined;
+import com.google.gson.annotations.SerializedName;
+
 public class Titulo implements Comparable<Titulo>{
     private String nombre;
     private int fechaDeLanzamineto;
@@ -7,6 +10,17 @@ public class Titulo implements Comparable<Titulo>{
     private boolean incluidoEnElPlan;
     private double sumaEvaluaciones;
     private int totalEvaluaciones;
+
+    public Titulo(TituloOmdb miTitulo) {
+        this.nombre = miTitulo.title();
+        this.fechaDeLanzamineto = Integer.valueOf(miTitulo.year());
+        if (miTitulo.runtime().contains("N/A")){
+            throw new ErrorFechaLanzamientoUndefined("No se puede convertir la fecha porque es N/A");
+        }
+
+        this.duracionEnMinutos = Integer.valueOf(miTitulo.runtime().substring(0,3).replace(" ", ""));
+    }
+
     int getTotalEvaluaciones(){
         return totalEvaluaciones;
     }
@@ -64,5 +78,12 @@ public class Titulo implements Comparable<Titulo>{
     @Override
     public int compareTo(Titulo otroTitulo) {
         return this.getNombre().compareTo(otroTitulo.getNombre());
+    }
+
+    @Override
+    public String toString() {
+        return "Pelicula= " + nombre + '\n' +
+                "FechaDeLanzamineto= " + fechaDeLanzamineto + '\n' +
+                "Duracion en minutos= " + duracionEnMinutos+ '\n'+'\n';
     }
 }

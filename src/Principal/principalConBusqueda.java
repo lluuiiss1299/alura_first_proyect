@@ -50,7 +50,7 @@ public class principalConBusqueda {
                 String json = response.body();
 
                 TituloOmdb miTitulo = gson.fromJson(json, TituloOmdb.class);
-                //        System.out.println("titulo buscado: "+miTitulo);
+                        System.out.println("titulo buscado: "+miTitulo);
                 Titulo titulo = new Titulo(miTitulo);
                 System.out.println("titulo buscado: " + titulo);
                 listaTitulos.add(titulo);
